@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="TodoItem" representedClassName="TodoItem" syncable="YES" codeGenerationType="class">
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="status" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="summary" attributeType="String" defaultValueString=""/>
+        <relationship name="userList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserList" inverseName="todos" inverseEntity="UserList"/>
+    </entity>
+    <entity name="UserList" representedClassName="UserList" syncable="YES" codeGenerationType="class">
+        <attribute name="colorData" optional="YES" attributeType="Binary"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TodoItem" inverseName="userList" inverseEntity="TodoItem"/>
+    </entity>
+</model>
