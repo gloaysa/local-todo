@@ -29,7 +29,7 @@ struct TodoCreateView: View {
 		let regex = try? NSRegularExpression(pattern: "^\\d{1,2}/\\d{1,2}/\\d{2}$")
 		let range = NSRange(string.startIndex..<string.endIndex, in: string)
 		if let match = regex?.firstMatch(in: string, options: [], range: range),
-		   let timeRange = Range(match.range(at: 0), in: string) {
+			 let timeRange = Range(match.range(at: 0), in: string) {
 			
 			let timeString = String(string[timeRange])
 			
@@ -48,7 +48,7 @@ struct TodoCreateView: View {
 		let regex = try? NSRegularExpression(pattern: "(\\d{1,2}:\\d{2})")
 		let range = NSRange(string.startIndex..<string.endIndex, in: string)
 		if let match = regex?.firstMatch(in: string, options: [], range: range),
-		   let timeRange = Range(match.range(at: 1), in: string) {
+			 let timeRange = Range(match.range(at: 1), in: string) {
 			
 			let timeString = String(string[timeRange])
 			
@@ -61,7 +61,7 @@ struct TodoCreateView: View {
 		
 		return nil
 	}
-
+	
 	
 	init(userList: UserList) {
 		// Initialize selectedUserList with the first user list when the view is created
@@ -107,7 +107,7 @@ struct TodoCreateView: View {
 								dateAddedAutomatically = false
 							}
 						}
-
+					
 					TextField("Notes", text: $todoToCreate.notes ?? "")
 				}
 				

@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    
-    static let darkGray = Color(red: 27/255, green: 27/255, blue: 30/255)
-    static let offWhite = Color(red: 242/255, green: 242/255, blue: 246/255)
+	
+	static let darkGray = Color(red: 27/255, green: 27/255, blue: 30/255)
+	static let offWhite = Color(red: 242/255, green: 242/255, blue: 246/255)
 	
 	private struct ColorData: Codable {
 		var r: Double
@@ -27,16 +27,16 @@ extension Color {
 	}
 	
 	static func encodeColor(_ color: Color) -> Data? {
-		#if os(iOS)
+#if os(iOS)
 		let nativeColor = UIColor(color)
-		#elseif os(macOS)
+#elseif os(macOS)
 		let nativeColor = NSColor(color)
-		#endif
+#endif
 		var (r, g, b, a) = (CGFloat.zero, CGFloat.zero, CGFloat.zero, CGFloat.zero)
 		nativeColor.getRed(&r, green: &g, blue: &b, alpha: &a)
 		
 		return try? JSONEncoder().encode(ColorData(r: Double(r), g: Double(g), b: Double(b), a: Double(a)))
 	}
-
-    
+	
+	
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 extension TodoItem {
-    
-    var uui: String {
-        return self.objectID.uriRepresentation().absoluteString
-    }
-    
+	
+	var uui: String {
+		return self.objectID.uriRepresentation().absoluteString
+	}
+	
 }

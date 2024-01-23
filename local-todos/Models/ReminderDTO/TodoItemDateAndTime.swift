@@ -8,11 +8,11 @@
 import Foundation
 
 struct TodoItemDateAndTime {
-    var dueDate: Date?
-    var dueTime: Date?
-    
-    init(date: Date?, time: Date?) {
-        self.dueDate = date
-        self.dueTime = time
-    }
+	var dueDate: Date?
+	var dueTime: Date?
+	
+	init(date: Date?, time: Date?) {
+		self.dueDate = date
+		self.dueTime = time
+	}
 }

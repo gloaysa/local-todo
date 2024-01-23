@@ -8,32 +8,32 @@
 import SwiftUI
 
 struct NavigationViewError: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var errorMessage: String
-    
-    var body: some View {
-        NavigationStack {
-            HStack {
-                Text(errorMessage)
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Error")
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-            
-        }
-        
-    }
+	@Environment(\.dismiss) private var dismiss
+	
+	var errorMessage: String
+	
+	var body: some View {
+		NavigationStack {
+			HStack {
+				Text(errorMessage)
+			}
+			.toolbar {
+				ToolbarItem(placement: .principal) {
+					Text("Error")
+				}
+				
+				ToolbarItem(placement: .navigationBarLeading) {
+					Button("Cancel") {
+						dismiss()
+					}
+				}
+			}
+			
+		}
+		
+	}
 }
 
 #Preview {
-    NavigationViewError(errorMessage: "some error")
+	NavigationViewError(errorMessage: "some error")
 }

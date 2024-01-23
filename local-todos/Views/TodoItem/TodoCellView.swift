@@ -61,8 +61,8 @@ struct TodoCellView: View {
 			
 			VStack(alignment: .leading, content: {
 				TextField("",
-						  text: $todoTitle,
-						  onEditingChanged: { editing in
+									text: $todoTitle,
+									onEditingChanged: { editing in
 					if (!editing) {
 						if (todoTitle != todo.summary) {
 							do {
@@ -74,13 +74,13 @@ struct TodoCellView: View {
 						}
 					}
 				},
-						  onCommit: { onEvent(.onSelect(nil)) }
+									onCommit: { onEvent(.onSelect(nil)) }
 				)
 				
 				if isSelected || !todoNotes.isEmpty {
 					TextField("Add Note",
-							  text: $todoNotes,
-							  onEditingChanged: { editing in
+										text: $todoNotes,
+										onEditingChanged: { editing in
 						if (!editing) {
 							if (todoNotes != todo.notes) {
 								do {
@@ -91,7 +91,7 @@ struct TodoCellView: View {
 							}
 						}
 					},
-							  onCommit: { onEvent(.onSelect(nil)) }
+										onCommit: { onEvent(.onSelect(nil)) }
 					)
 					.font(.caption)
 					.opacity(0.4)
