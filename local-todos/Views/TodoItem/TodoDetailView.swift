@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReminderDetailView: View {
+struct TodoDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     
@@ -149,5 +149,5 @@ struct ReminderDetailView: View {
 }
 
 #Preview {
-    ReminderDetailView(todo: .constant(PreviewData.todo))
+    TodoDetailView(todo: .constant(PreviewData.todo))
 }

@@ -10,6 +10,11 @@ import UIKit
 import SwiftUI
 
 extension UserList {
+	
+	var uui: String {
+		return self.objectID.uriRepresentation().absoluteString
+	}
+	
     
     private struct ColorData: Codable {
         var r: Double
@@ -17,12 +22,7 @@ extension UserList {
         var b: Double
         var a: Double
     }
-    
-    var uui: String {
-        return self.objectID.uriRepresentation().absoluteString
-    }
-    
-    
+
     var color: Color {
         
         get {

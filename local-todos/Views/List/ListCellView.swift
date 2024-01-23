@@ -8,48 +8,70 @@
 import SwiftUI
 
 enum ListCellEvents {
-    case onDetails(UserList)
-    case onDelete(UserList)
+	case onEdit(UserList)
+	case onDelete(UserList)
 }
 
 struct ListCellView: View {
-    let userList: UserList
-    let onEvent: (ListCellEvents) -> Void
-    
-    @State private var appears: Bool = false
-    
-    var body: some View {
-        HStack {
-            Button ("", systemImage: "line.3.horizontal.circle.fill") {
-            }
-            .symbolEffect(.bounce.down, value: appears)
-            .foregroundColor(userList.color)
-            
-            VStack {
-                Text(userList.name!)
-            }
-        }
-        .onAppear {
-            appears = true
-        }
-        .swipeActions {
-            Button("Delete", role: .destructive) {
-                onEvent(ListCellEvents.onDelete(userList))
-            }
-            
-            Button("Details") {
-                onEvent(ListCellEvents.onDetails(userList))
-            }
-        }
-    }
+	let userList: UserList
+	let onEvent: (ListCellEvents) -> Void
+	
+	@State private var appears: Bool = false
+	@State private var openDetails: Bool = false
+	
+	var listCreateView: some View {
+		HStack {
+			NavigationStack {
+				ListCreateView(
+					userList: userList,
+					onDismiss: {}
+				) { updateList in
+					onEvent(ListCellEvents.onEdit(updateList))
+				}
+			}
+		}
+	}
+	
+	var body: some View {
+		HStack {
+			Button ("", systemImage: "line.3.horizontal.circle.fill") {
+			}
+			.padding(.trailing, -10.0)
+			.symbolEffect(.bounce.down, value: appears)
+			.foregroundColor(userList.color)
+			.font(.title)
+			
+			VStack {
+				Text(userList.name!)
+					.font(.title3)
+					.fontWeight(.light)
+			}
+		}
+		.padding(/*@START_MENU_TOKEN@*/.vertical, 5.0/*@END_MENU_TOKEN@*/)
+		.sheet(isPresented: $openDetails, onDismiss: {}) {
+			listCreateView
+		}
+		.onAppear {
+			appears = true
+		}
+		.swipeActions {
+			Button("Details", systemImage: "info.circle.fill") {
+				openDetails = true
+			}
+			
+			Button("Delete", systemImage: "trash.fill", role: .destructive) {
+				onEvent(ListCellEvents.onDelete(userList))
+			}
+		}
+	}
 }
 
 #Preview {
-    ListCellView(
-        userList: PreviewData.userList,
-        onEvent: { event in
-            print(event)
-        }
-    )
+	ListCellView(
+		userList: PreviewData.userList,
+		onEvent: { event in
+			print(event)
+		}
+	)
 }
 

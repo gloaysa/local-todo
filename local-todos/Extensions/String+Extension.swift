@@ -8,8 +8,8 @@
 import Foundation
 
 extension String {
-    // extend String to add new function to check if name of the lis
-    var isEmptyOrWhitespace: Bool {
-        return trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-    }
+	// extend String to add new function to check if name of the lis
+	var isEmptyOrWhitespace: Bool {
+		return trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
 }

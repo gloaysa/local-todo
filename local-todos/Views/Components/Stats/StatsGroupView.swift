@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct Stat {
+	let icon: String
+	let title: String
+	let count: Int
+	let iconColor: Color
+}
+
+
 struct StatsGroupView: View {
     
     @FetchRequest(fetchRequest: TodoItemService.todosByStatType(statType: .today))
@@ -20,18 +28,30 @@ struct StatsGroupView: View {
     
     @FetchRequest(fetchRequest: TodoItemService.todosByStatType(statType: .completed))
     private var completedResults: FetchedResults<TodoItem>
+	
+	private var stats: [Stat] {
+		[
+			Stat(icon: "calendar", title: "Today", count: todayResults.count, iconColor: .blue),
+			Stat(icon: "calendar.circle.fill", title: "Scheduled", count: scheduledResults.count, iconColor: .red),
+			Stat(icon: "tray.circle.fill", title: "All", count: allResults.count, iconColor: .gray),
+			Stat(icon: "checkmark.circle.fill", title: "Completed", count: completedResults.count, iconColor: .green)
+		]
+	}
+
+	
     
     var body: some View {
         VStack {
             HStack {
+				
                 NavigationLink {
                     TodoListView(todos: todayResults)
                 } label: {
                     StatsCellView(
-                        icon: "calendar",
-                        title: "Today",
-                        count: todayResults.count,
-                        iconColor: .blue
+						icon: stats[0].icon,
+						title: stats[0].title,
+						count: stats[0].count,
+						iconColor: stats[0].iconColor
                     )
                 }
                 
@@ -39,10 +59,10 @@ struct StatsGroupView: View {
                     TodoListView(todos: scheduledResults)
                 } label: {
                     StatsCellView(
-                        icon: "calendar.circle.fill",
-                        title: "Scheduled",
-                        count: scheduledResults.count,
-                        iconColor: .red
+						icon: stats[1].icon,
+						title: stats[1].title,
+						count: stats[1].count,
+						iconColor: stats[1].iconColor
                     )
                 }
                 
@@ -53,10 +73,10 @@ struct StatsGroupView: View {
                     TodoListView(todos: allResults)
                 } label: {
                     StatsCellView(
-                        icon: "tray.circle.fill",
-                        title: "All",
-                        count: allResults.count,
-                        iconColor: .gray
+						icon: stats[2].icon,
+						title: stats[2].title,
+						count: stats[2].count,
+						iconColor: stats[2].iconColor
                     )
                 }
                 
@@ -64,14 +84,15 @@ struct StatsGroupView: View {
                     TodoListView(todos: completedResults)
                 } label: {
                     StatsCellView(
-                        icon: "checkmark.circle.fill",
-                        title: "Completed",
-                        count: completedResults.count,
-                        iconColor: .green
+						icon: stats[3].icon,
+						title: stats[3].title,
+						count: stats[3].count,
+						iconColor: stats[3].iconColor
                     )
-                }
+				}
             }
-        }.padding(.horizontal)
+        }
+		.padding(.horizontal)
     }
 }
 

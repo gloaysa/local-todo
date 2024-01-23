@@ -12,17 +12,13 @@ struct ColorPickerView: View {
     @Binding var selectedColor: Color
     
     let colors: [Color] = [
+		.pink,
         .orange,
         .yellow,
         .green,
-        .mint,
-        .teal,
-        .cyan,
         .blue,
         .purple,
-        .pink,
         .brown,
-        .gray,
     ]
     
     /// Compares two UIColor objects for equality with a specified tolerance.
@@ -33,7 +29,7 @@ struct ColorPickerView: View {
     ///   - tolerance: The allowable difference between color components. The default value is 0.01.
     ///
     /// - Returns: `true` if the colors are considered equal within the specified tolerance; otherwise, `false`.
-    func compareColors(_ color1: UIColor, _ color2: UIColor, tolerance: CGFloat = 0.01) -> Bool {
+	func compareColors(_ color1: UIColor, _ color2: UIColor, tolerance: CGFloat = 0.15) -> Bool {
         // Extract the components (red, green, blue, alpha) from color1
         var r1: CGFloat = 0, g1: CGFloat = 0, b1: CGFloat = 0, a1: CGFloat = 0
         color1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
@@ -88,7 +84,7 @@ struct ColorPickerView: View {
     }
     
     private func calculateColumns(width: CGFloat) -> Int {
-        let minColumnWidth: CGFloat = 60
+        let minColumnWidth: CGFloat = 35
         let availableWidth = width - 16 // Adjust for padding and spacing
         let columns = Int(availableWidth / minColumnWidth)
         return max(1, columns)

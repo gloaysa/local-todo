@@ -18,6 +18,8 @@ struct ListCreateView: View {
     
     @State private var name: String = ""
     @State private var selectedColor: Color = .yellow
+	
+	@State private var listName: String = ""
     
     
     private var isFormValid: Bool {
@@ -46,10 +48,11 @@ struct ListCreateView: View {
         .onAppear {
             selectedColor = userList.color
             name = userList.name!
+			listName = name.isEmpty ? "New List" : "List info"
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("New List")
+				Text(listName)
                     .font(.headline)
             }
             
@@ -70,7 +73,7 @@ struct ListCreateView: View {
                 }.disabled(!isFormValid)
             }
         }
-    }
+	}
 }
 
 #Preview {

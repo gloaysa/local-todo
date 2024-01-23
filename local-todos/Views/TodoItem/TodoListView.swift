@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+extension Animation {
+    static let customAnimation: Animation = .easeInOut(duration: 0.5) // Adjust duration and type as needed
+}
+
+
 struct TodoListView: View {
     let todos: FetchedResults<TodoItem>
     
@@ -55,20 +60,18 @@ struct TodoListView: View {
             } else {
                 
                 VStack {
-                    List {
-                        ForEach(todos) { todo in
-                            TodoCellView(todo: todo, isSelected: isReminderSelected(todo)) { event in
-                                switch event {
-                                case .onSelect(let todo):
-                                    onReminderSelected(todo: todo)
-                                case .onCheckChanged(let todo, let isCompleted):
-                                    todoCheckedChanged(todo: todo, isCompleted: isCompleted)
-                                case .onInfo:
-                                    hideKeyboard()
-                                    showTodoDetail = true
-                                case .onDelete(let todo):
-                                    deleteReminder(todo)
-                                }
+                    List(todos) { todo in
+                        TodoCellView(todo: todo, isSelected: isReminderSelected(todo)) { event in
+                            switch event {
+                            case .onSelect(let todo):
+                                onReminderSelected(todo: todo)
+                            case .onCheckChanged(let todo, let isCompleted):
+                                todoCheckedChanged(todo: todo, isCompleted: isCompleted)
+                            case .onInfo:
+                                hideKeyboard()
+                                showTodoDetail = true
+                            case .onDelete(let todo):
+                                deleteReminder(todo)
                             }
                         }
                         
@@ -79,7 +82,7 @@ struct TodoListView: View {
                         onDismiss: { selectedTodo = nil }
                     ) {
                         if (selectedTodo != nil) {
-                            ReminderDetailView(todo: Binding($selectedTodo)!)
+                            TodoDetailView(todo: Binding($selectedTodo)!)
                         } else {
                             // TODO: Properly handle this
                             NavigationViewError(errorMessage: "The TodoItem could not be selected")

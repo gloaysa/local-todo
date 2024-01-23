@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.colorScheme) var colorScheme
 	
 	@FetchRequest(sortDescriptors: [])
 	private var userListResults: FetchedResults<UserList>
@@ -49,6 +50,7 @@ struct HomeView: View {
 					
 					StatsGroupView()
 					
+					
 					ListsView(userLists: userListResults)
 					
 					
@@ -70,6 +72,9 @@ struct HomeView: View {
 						}.padding()
 					}
 				}
+				.background(
+					colorScheme == .dark ? Color(.systemBackground) : Color(.secondarySystemBackground)
+				)
 				.sheet(isPresented: $createNewListActive) {
 					NavigationStack {
 						let tempUserList = UserListService.getTemporalUserList()
@@ -93,6 +98,7 @@ struct HomeView: View {
 						TodoCreateView(userList: userListResults[0])
 					}
 				}.navigationTitle("Local Todos")
+				
 			}
 		}
 		.searchable(text: $search)

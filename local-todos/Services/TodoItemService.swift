@@ -42,7 +42,7 @@ class TodoItemService {
     static func getTodoItemsBySearch(_ search: String) -> NSFetchRequest<TodoItem> {
         let request = TodoItem.fetchRequest()
         request.sortDescriptors = []
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", search)
+        request.predicate = NSPredicate(format: "summary CONTAINS[cd] %@", search)
         return request
     }
     

@@ -34,7 +34,7 @@ struct StatsCellView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(colorScheme == .dark ? Color.darkGray : .offWhite)
+		.background(colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground))
         .foregroundColor(colorScheme == .dark ? Color.offWhite : .darkGray)
         .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
     }
