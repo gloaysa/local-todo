@@ -25,8 +25,10 @@ struct ListCellView: View {
 				ListCreateView(
 					userList: userList,
 					onDismiss: {}
-				) { updateList in
-					onEvent(ListCellEvents.onEdit(updateList))
+				) { name, color in
+					userList.name = name
+					userList.color = color
+					onEvent(ListCellEvents.onEdit(userList))
 				}
 			}
 		}
@@ -36,10 +38,11 @@ struct ListCellView: View {
 		HStack {
 			Button ("", systemImage: "line.3.horizontal.circle.fill") {
 			}
-			.padding(.trailing, -10.0)
+			.padding(.trailing, -15.0)
+			.padding(.leading, -10.0)
 			.symbolEffect(.bounce.down, value: appears)
 			.foregroundColor(userList.color)
-			.font(.title)
+			.font(.title2)
 			
 			VStack {
 				Text(userList.name!)
@@ -47,7 +50,6 @@ struct ListCellView: View {
 					.fontWeight(.light)
 			}
 		}
-		.padding(/*@START_MENU_TOKEN@*/.vertical, 5.0/*@END_MENU_TOKEN@*/)
 		.sheet(isPresented: $openDetails, onDismiss: {}) {
 			listCreateView
 		}

@@ -10,6 +10,7 @@
     </entity>
     <entity name="UserList" representedClassName="UserList" syncable="YES" codeGenerationType="class">
         <attribute name="colorData" optional="YES" attributeType="Binary"/>
+        <attribute name="entityId" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TodoItem" inverseName="userList" inverseEntity="TodoItem"/>
     </entity>

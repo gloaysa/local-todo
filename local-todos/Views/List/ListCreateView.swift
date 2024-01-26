@@ -12,14 +12,15 @@ struct ListCreateView: View {
 	
 	@Environment(\.dismiss) private var dismiss
 	
-	let userList: UserList
+	let userList: UserList?
 	let onDismiss: () -> Void
-	let onSave: (_ userList: UserList) -> Void
+	let onSave: (_ name: String, _ color: Color) -> Void
 	
 	@State private var name: String = ""
 	@State private var selectedColor: Color = .yellow
 	
 	@State private var listName: String = ""
+	@FocusState private var isFocused: Bool
 	
 	
 	private var isFormValid: Bool {
@@ -35,6 +36,7 @@ struct ListCreateView: View {
 				TextField("List Name", text: $name)
 					.multilineTextAlignment(.center)
 					.textFieldStyle(.roundedBorder)
+					.focused($isFocused)
 			}
 			.padding(30)
 			.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
@@ -46,8 +48,9 @@ struct ListCreateView: View {
 		}
 		.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
 		.onAppear {
-			selectedColor = userList.color
-			name = userList.name!
+			isFocused = true
+			selectedColor = userList?.color ?? Color(.blue)
+			name = userList?.name ?? ""
 			listName = name.isEmpty ? "New List" : "List info"
 		}
 		.toolbar {
@@ -65,9 +68,9 @@ struct ListCreateView: View {
 			
 			ToolbarItem(placement: .navigationBarTrailing) {
 				Button("Done") {
-					userList.name = name
-					userList.color = selectedColor
-					onSave(userList)
+					userList?.name = name
+					userList?.color = selectedColor
+					onSave(name, selectedColor)
 					
 					dismiss()
 				}.disabled(!isFormValid)
@@ -81,7 +84,7 @@ struct ListCreateView: View {
 		ListCreateView(
 			userList: PreviewData.userList,
 			onDismiss: {}
-		) { newUserList in }
+		) { name, color in }
 	}
 	
 }

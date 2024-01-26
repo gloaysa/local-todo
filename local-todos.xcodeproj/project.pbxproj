@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA5F11B12B6198DD0058A68B /* HAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F11B02B6198DD0058A68B /* HAService.swift */; };
+		FA5F11BA2B62C62D0058A68B /* HAKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA5F11B92B62C62D0058A68B /* HAKit */; };
+		FA5F11BF2B62D3280058A68B /* HAKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA5F11BE2B62D3280058A68B /* HAKit */; };
+		FA5F11C22B62D3630058A68B /* HAKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA5F11C12B62D3630058A68B /* HAKit */; };
 		FA9132FD2B5D5E9D00A02EF8 /* local_todosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9132FC2B5D5E9D00A02EF8 /* local_todosApp.swift */; };
 		FA9132FF2B5D5E9D00A02EF8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9132FE2B5D5E9D00A02EF8 /* HomeView.swift */; };
 		FA9133012B5D5E9E00A02EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9133002B5D5E9E00A02EF8 /* Assets.xcassets */; };
@@ -65,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA5F11B02B6198DD0058A68B /* HAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAService.swift; sourceTree = "<group>"; };
 		FA9132F92B5D5E9D00A02EF8 /* local-todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "local-todos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9132FC2B5D5E9D00A02EF8 /* local_todosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = local_todosApp.swift; sourceTree = "<group>"; };
 		FA9132FE2B5D5E9D00A02EF8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
@@ -114,6 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5F11C22B62D3630058A68B /* HAKit in Frameworks */,
+				FA5F11BF2B62D3280058A68B /* HAKit in Frameworks */,
+				FA5F11BA2B62C62D0058A68B /* HAKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +249,7 @@
 				FA9133392B5D602300A02EF8 /* UserListService.swift */,
 				FA91333A2B5D602300A02EF8 /* NotificationService.swift */,
 				FA91333B2B5D602300A02EF8 /* TodoItemService.swift */,
+				FA5F11B02B6198DD0058A68B /* HAService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -334,6 +343,11 @@
 			dependencies = (
 			);
 			name = "local-todos";
+			packageProductDependencies = (
+				FA5F11B92B62C62D0058A68B /* HAKit */,
+				FA5F11BE2B62D3280058A68B /* HAKit */,
+				FA5F11C12B62D3630058A68B /* HAKit */,
+			);
 			productName = "local-todos";
 			productReference = FA9132F92B5D5E9D00A02EF8 /* local-todos.app */;
 			productType = "com.apple.product-type.application";
@@ -406,6 +420,9 @@
 				Base,
 			);
 			mainGroup = FA9132F02B5D5E9C00A02EF8;
+			packageReferences = (
+				FA5F11C02B62D3630058A68B /* XCLocalSwiftPackageReference "../HAKit" */,
+			);
 			productRefGroup = FA9132FA2B5D5E9D00A02EF8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -476,6 +493,7 @@
 				FA9133752B5D741600A02EF8 /* TodoItem+Extension.swift in Sources */,
 				FA9133722B5D602300A02EF8 /* Color+Extension.swift in Sources */,
 				FA91335D2B5D602300A02EF8 /* TodoItemDateAndTime.swift in Sources */,
+				FA5F11B12B6198DD0058A68B /* HAService.swift in Sources */,
 				FA9133292B5D5EB800A02EF8 /* TodoModel.xcdatamodeld in Sources */,
 				FA91336F2B5D602300A02EF8 /* Date+Extension.swift in Sources */,
 				FA9132FD2B5D5E9D00A02EF8 /* local_todosApp.swift in Sources */,
@@ -837,6 +855,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		FA5F11C02B62D3630058A68B /* XCLocalSwiftPackageReference "../HAKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../HAKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA5F11B92B62C62D0058A68B /* HAKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HAKit;
+		};
+		FA5F11BE2B62D3280058A68B /* HAKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HAKit;
+		};
+		FA5F11C12B62D3630058A68B /* HAKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HAKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		FA9133272B5D5EB800A02EF8 /* TodoModel.xcdatamodeld */ = {

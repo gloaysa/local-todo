@@ -22,6 +22,8 @@ struct HomeView: View {
 	@State private var search: String = ""
 	@State private var searching: Bool = false
 	
+	private let haService = HAService()
+	
 	private func deleteAllRecords() {
 		let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "UserList")
 		
@@ -36,6 +38,10 @@ struct HomeView: View {
 		}
 	}
 	
+	private func getList() -> Void {
+		haService.retrieveLists()
+	}
+	
 	var body: some View {
 		NavigationStack {
 			if searching {
@@ -46,13 +52,12 @@ struct HomeView: View {
 			} else {
 				VStack {
 					
-					// Button("Delete All Records") {deleteAllRecords()}
+					Button("Delete All Records") {deleteAllRecords()}
 					
 					StatsGroupView()
 					
 					
-					ListsView(userLists: userListResults)
-					
+					ListsView(userLists: userListResults)					
 					
 					HStack {
 						
@@ -77,15 +82,18 @@ struct HomeView: View {
 				)
 				.sheet(isPresented: $createNewListActive) {
 					NavigationStack {
-						let tempUserList = UserListService.getTemporalUserList()
 						ListCreateView(
-							userList: tempUserList,
+							userList: nil,
 							onDismiss: {
-								UserListService.deleteTemporalUserList(tempUserList)
+								
 							}
-						) { userList in
+						) { name, color in
 							do {
-								try UserListService.createUserList(userList)
+								try UserListService.createUserList(
+									name: name,
+									color: color,
+									entityId: "todo." + name.replacingOccurrences(of: " ", with: "_").lowercased()
+								)
 							} catch {
 								print(error)
 							}
@@ -100,6 +108,9 @@ struct HomeView: View {
 				}.navigationTitle("Local Todos")
 				
 			}
+		}
+		.task {
+			getList()
 		}
 		.searchable(text: $search)
 		.searchable(text: $search)

@@ -41,18 +41,7 @@ struct ListsView: View {
 		HStack {
 			if userLists.isEmpty {
 				VStack {
-					Spacer()
-					
-					Button("add list") {
-						let temp = UserListService.getTemporalUserList()
-						temp.name = "My todo list"
-						do {
-							try UserListService.createUserList(temp)
-						} catch {
-							print(error)
-						}
-					}
-					
+					Spacer()					
 				}
 			} else {
 				VStack {

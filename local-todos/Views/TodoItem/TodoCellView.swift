@@ -41,7 +41,7 @@ struct TodoCellView: View {
 					checked.toggle()
 				}
 			} label: {
-				Label("", systemImage: checked ? "checkmark.circle.fill" : "circle")   
+				Label("", systemImage: checked ? "checkmark.circle.fill" : "circle")
 			}
 			.foregroundColor(checked ? Color.blue : .gray)
 			.onTapGesture {

@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftUI
 
 class UserListService {
 	
@@ -54,8 +55,30 @@ class UserListService {
 	/// - Parameters:
 	///   - userList: A temporal UserList to be saved in the context.
 	/// - Throws: An error if the save operation fails.
-	static func createUserList(_ userList: UserList) throws {
-		try save()
+	static func createUserList(name: String, color: Color, entityId: String) throws -> UserList? {
+		do {
+			let request = UserList.fetchRequest()
+			print(entityId)
+			request.predicate = NSPredicate(format: "entityId = %@", entityId)
+			let results = try viewContext.fetch(request)
+			
+			if let existingUserList = results.first {
+				// If the user list already exists, return it
+				return existingUserList
+			} else {
+				// If the user list doesn't exist, create a new one
+				let newUserList = UserList(context: viewContext)
+				newUserList.name = name
+				newUserList.color = color
+				newUserList.entityId = entityId
+				
+				try save()
+				return newUserList
+			}
+		} catch {
+			print("[UserListService]: Error when creating list", error)
+			return nil
+		}
 	}
 	
 	static func editUserList(userList: UserList) throws {
